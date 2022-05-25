@@ -226,6 +226,7 @@ def evaluate(model, dataset, ignore_label=250, save_output_images=False, save_di
                 filename = os.path.join(save_dir, '{}.png'.format(name[0]))
                 color_file = Image.fromarray(colorize(output).transpose(1, 2, 0), 'RGB')
                 color_file.save(filename)
+                print("Image saved...")
 
         if (index+1) % 100 == 0:
             print('%d processed'%(index+1))
