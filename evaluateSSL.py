@@ -279,6 +279,7 @@ if __name__ == '__main__':
         num_classes = 21
 
     ignore_label = config['ignore_label']
-    save_dir = os.path.join(*args.model_path.split('/')[:-1])
-
+    #save_dir = os.path.join(*args.model_path.split('/')[:-1])
+    save_dir = '/content/saved_img'
+    os.mkdir(save_dir)
     main()
