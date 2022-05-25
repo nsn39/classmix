@@ -249,14 +249,14 @@ def main():
     #model = torch.nn.DataParallel(Res_Deeplab(num_classes=num_classes), device_ids=args.gpu)
     model = Res_Deeplab(num_classes=num_classes)
 
-    '''
+    
     checkpoint = torch.load(args.model_path)
     try:
         model.load_state_dict(checkpoint['model'])
     except:
         model = torch.nn.DataParallel(model, device_ids=args.gpu)
         model.load_state_dict(checkpoint['model'])
-    '''
+    
 
     model.cuda()
     model.eval()
@@ -269,7 +269,7 @@ if __name__ == '__main__':
 
     config = torch.load(args.model_path)['config']
 
-    dataset = 'pascal_voc'
+    dataset = 'cityscapes'
 
     if dataset == 'cityscapes':
         num_classes = 19
