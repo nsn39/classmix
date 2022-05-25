@@ -280,6 +280,7 @@ if __name__ == '__main__':
 
     ignore_label = config['ignore_label']
     #save_dir = os.path.join(*args.model_path.split('/')[:-1])
+    print("Making new directory...")
     save_dir = '/content/saved_img'
     os.mkdir(save_dir)
     main()
