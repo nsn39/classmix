@@ -75,6 +75,27 @@ class VOCColorize(object):
 
         return color_image
 
+class CityscapeColorize(object):
+    def __init__(self, n=19):
+        self.cmap = color_map(19)
+        self.cmap = torch.from_numpy(self.cmap[:n])
+
+    def __call__(self, gray_image):
+        size = gray_image.shape
+        color_image = np.zeros((3, size[0], size[1]), dtype=np.uint8)
+
+        for label in range(0, len(self.cmap)):
+            mask = (label == gray_image)
+            color_image[0][mask] = self.cmap[label][0]
+            color_image[1][mask] = self.cmap[label][1]
+            color_image[2][mask] = self.cmap[label][2]
+
+        # handle void
+        mask = (255 == gray_image)
+        color_image[0][mask] = color_image[1][mask] = color_image[2][mask] = 255
+
+        return color_image
+
 def color_map(N=256, normalized=False):
     def bitget(byteval, idx):
         return ((byteval & (1 << idx)) != 0)
@@ -172,7 +193,7 @@ def evaluate(model, dataset, ignore_label=250, save_output_images=False, save_di
     print('Evaluating, found ' + str(len(testloader)) + ' images.')
 
     data_list = []
-    colorize = VOCColorize()
+    colorize = CityscapeColorize()
 
     total_loss = []
 
@@ -200,11 +221,11 @@ def evaluate(model, dataset, ignore_label=250, save_output_images=False, save_di
             output = output.transpose(1,2,0)
             output = np.asarray(np.argmax(output, axis=2), dtype=np.int)
             data_list.append([gt.reshape(-1), output.reshape(-1)])
+            save_output_images = True
             if save_output_images:
-                if dataset == 'pascal_voc':
-                    filename = os.path.join(save_dir, '{}.png'.format(name[0]))
-                    color_file = Image.fromarray(colorize(output).transpose(1, 2, 0), 'RGB')
-                    color_file.save(filename)
+                filename = os.path.join(save_dir, '{}.png'.format(name[0]))
+                color_file = Image.fromarray(colorize(output).transpose(1, 2, 0), 'RGB')
+                color_file.save(filename)
 
         if (index+1) % 100 == 0:
             print('%d processed'%(index+1))
