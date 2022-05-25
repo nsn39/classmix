@@ -19,6 +19,6 @@ def get_data_path(name):
     :param config_file:
     """
     if name == 'cityscapes':
-        return '/content/classmix/data/CityScapes/'
+        return '/content/drive/MyDrive/CityScapes/'
     if name == 'pascal_voc':
         return '/content/classmix/data/VOC2012/'
