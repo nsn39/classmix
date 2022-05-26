@@ -211,7 +211,7 @@ def evaluate(model, dataset, ignore_label=250, save_output_images=False, save_di
             total_loss.append(loss.item())
 
             output = output.cpu().data[0].numpy()
-
+            print("point 1.")
             if dataset == 'pascal_voc':
                 output = output[:,:size[0],:size[1]]
                 gt = np.asarray(label[0].numpy()[:size[0],:size[1]], dtype=np.int)
@@ -222,13 +222,11 @@ def evaluate(model, dataset, ignore_label=250, save_output_images=False, save_di
             output = np.asarray(np.argmax(output, axis=2), dtype=np.int)
             data_list.append([gt.reshape(-1), output.reshape(-1)])
             save_output_images = True
+            save_dir = '/content/saved'
             if save_output_images:
-                save_dir = '/content/saved_img'
                 filename = os.path.join(save_dir, '{}.png'.format(name[0]))
                 color_file = Image.fromarray(colorize(output).transpose(1, 2, 0), 'RGB')
-                #print(filename)
                 color_file.save(filename)
-                print("Image saved...")
 
         if (index+1) % 100 == 0:
             print('%d processed'%(index+1))
