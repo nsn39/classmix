@@ -221,12 +221,15 @@ def evaluate(model, dataset, ignore_label=250, save_output_images=False, save_di
             output = output.transpose(1,2,0)
             output = np.asarray(np.argmax(output, axis=2), dtype=np.int)
             data_list.append([gt.reshape(-1), output.reshape(-1)])
-            save_output_images = False
-            save_dir = '/content/saved'
+            save_output_images = True
+            save_dir = '/content/saved_img'
             if save_output_images:
                 filename = os.path.join(save_dir, '{}.png'.format(name[0]))
-                color_file = Image.fromarray(colorize(output).transpose(1, 2, 0), 'RGB')
-                color_file.save(filename)
+                print("saved dir:", save_dir)
+                print("Filename:", filename)
+                print("Name: ", name[0])
+                #color_file = Image.fromarray(colorize(output).transpose(1, 2, 0), 'RGB')
+                #color_file.save(filename)
             print("Processing...")
         if (index+1) % 100 == 0:
             print('%d processed'%(index+1))
