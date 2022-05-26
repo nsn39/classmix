@@ -224,7 +224,7 @@ def evaluate(model, dataset, ignore_label=250, save_output_images=False, save_di
             save_output_images = True
             if save_output_images:
                 save_dir = '/content/saved_img'
-                filename = os.path.join(save_dir, '{}'.format(name[0]))
+                filename = os.path.join(save_dir, '{}.png'.format(name[0]))
                 color_file = Image.fromarray(colorize(output).transpose(1, 2, 0), 'RGB')
                 #print(filename)
                 color_file.save(filename)
