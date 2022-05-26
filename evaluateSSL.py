@@ -223,11 +223,11 @@ def evaluate(model, dataset, ignore_label=250, save_output_images=False, save_di
             data_list.append([gt.reshape(-1), output.reshape(-1)])
             save_output_images = True
             if save_output_images:
-                
+                print("Name: ", name[0])
                 filename = os.path.join('/content/saved_img', '{}'.format(name[0]))
                 color_file = Image.fromarray(colorize(output).transpose(1, 2, 0), 'RGB')
-                print(filename)
-                print(color_file)
+                #filename = '/content/saved_img'
+                #print(filename)
                 color_file.save(filename)
                 print("Image saved...")
 
