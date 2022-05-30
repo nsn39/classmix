@@ -25,4 +25,4 @@ def get_data_path(name):
     if name == 'pascal_voc':
         return '/content/classmix/data/VOC2012/'
     if name == 'natural':
-        return '/content/dirve/MyDrive/natural/'
+        return '/content/dirve/MyDrive/natural/natural-images'

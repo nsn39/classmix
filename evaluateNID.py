@@ -91,7 +91,6 @@ def evaluate(ignore_label=250):
     data_path = get_data_path('natural')
     test_dataset = data_loader( data_path)
     testloader = data.DataLoader(test_dataset, batch_size=1, shuffle=False, pin_memory=True)
-    
 
     print('Evaluating, found ' + str(len(testloader))) 
 
