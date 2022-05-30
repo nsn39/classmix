@@ -124,7 +124,7 @@ def evaluate(ignore_label=250):
             save_dir = '/content/saved_img'
             if save_output_images:
                 #filename = os.path.join(save_dir, '{}.png'.format(name[0]))
-                save_name = img_name
+                save_name = img_name[0]
                 print('save_name: ', save_name, type(save_name))
                 save_name = '/content/saved_img/' + save_name
                 print("Filename:", save_name)
