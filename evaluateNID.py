@@ -129,7 +129,7 @@ def evaluate(ignore_label=250):
                 save_name = '/content/saved_img/' + save_name
                 print("Filename:", save_name)
                 color_file = Image.fromarray(colorize(output).transpose(1, 2, 0), 'RGB')
-                #color_file.save(save_name)
+                color_file.save(save_name)
             print("Processing...")
         if (index+1) % 100 == 0:
             print('%d processed'%(index+1))
