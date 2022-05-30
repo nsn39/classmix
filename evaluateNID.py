@@ -97,7 +97,7 @@ def evaluate(ignore_label=250):
     colorize = CityscapeColorize()
 
     for index, batch in enumerate(testloader):
-        image, _, img_name = batch
+        image, _, img_name = batch.float()
         
 
         with torch.no_grad():
