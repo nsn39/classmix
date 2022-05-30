@@ -98,7 +98,7 @@ def evaluate(ignore_label=250):
 
     for index, batch in enumerate(testloader):
         image, _, img_name = batch
-        size = (image.shape[1], image.shape[2])
+        size = (image.shape[0], image.shape[1])
 
         with torch.no_grad():
             interp = nn.Upsample(size=size, mode='bilinear', align_corners=True)
