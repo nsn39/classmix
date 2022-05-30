@@ -32,7 +32,7 @@ class NaturalDatasetLoader(data.Dataset):
         img = m.imread(img_path)
         print("Shape: ", img.shape)
         img = np.array(img, dtype=np.uint8)
-
+        img = np.transpose(img, (2,0,1))
 
         img_name = img_path.split('/')[-1]
         return img, img_path, img_name
