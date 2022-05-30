@@ -98,10 +98,10 @@ def evaluate(ignore_label=250):
 
     for index, batch in enumerate(testloader):
         image, _, img_name = batch
-        
+        size = (image.shape[1], image.shape[2])
 
         with torch.no_grad():
-            interp = nn.Upsample(size=image.shape, mode='bilinear', align_corners=True)
+            interp = nn.Upsample(size=size, mode='bilinear', align_corners=True)
 
             output  = model(Variable(image).cuda())
             output = interp(output)
