@@ -30,6 +30,7 @@ class NaturalDatasetLoader(data.Dataset):
         img_path = self.files[index].rstrip()
        
         img = m.imread(img_path)
+        print("Shape: ", img.shape)
         img = np.array(img, dtype=np.uint8)
 
 
